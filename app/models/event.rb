@@ -23,4 +23,6 @@ class Event < ActiveRecord::Base
 
   validates :goal_money, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }, :numericality => {:greater_than => 0, :less_than => 200000}
 
+  belongs_to :user
+
 end

@@ -4,7 +4,7 @@
 #
 #  id           :integer          not null, primary key
 #  name         :string(255)
-#  event_id      :integer
+#  user_id      :integer
 #  description  :string(255)
 #  inlieuof     :string(255)
 #  charity_name :string(255)
