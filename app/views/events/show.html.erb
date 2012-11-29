@@ -1,0 +1,28 @@
+<% provide(:title, @event.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        Name: <%= @event.name %>
+      </h1>
+      <h1>
+        User: <%= @event.user_id %>
+      </h1>
+      <h1>
+        Description: <%= @event.description %>
+      </h1>
+       <h1>
+        Charity: <%= @event.charity_name %>
+      </h1>
+       <h1>
+        Inlieu of: <%= @event.inlieuof %>
+      </h1>
+       <h1>
+        Money Raised: <%= @event.money_raised %>
+      </h1>
+      <h1>
+        Goal: <%= @event.goal_money %>
+      </h1>
+    </section>
+  </aside>
+</div>

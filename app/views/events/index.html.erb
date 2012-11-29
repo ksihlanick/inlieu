@@ -1,0 +1,21 @@
+<h1> Events Index </h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Money</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+	<td> <%= event.name %> </td>
+	<td> <%= event.money_raised %> </td>
+	<td> <%= link_to 'Show', event %> </td>
+	<td> <%= link_to 'Destroy', event, html_options = {:method => :delete} %> </td>
+  </tr>
+<% end %>
+
+</table>
