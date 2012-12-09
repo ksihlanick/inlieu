@@ -15,6 +15,6 @@ FactoryGirl.define do
   end
 end
 
-@event = Event.new(name: "Your Mom's Event", user_id: 11, money_raised: 10.00, 
-    	inlieuof: 'birthday', goal_money: 10000.00, description: "Your mom needs this so bad, so bad, so bad. Charity. Bam", 
-    	charity_name: "The Red Cross")
+@event = Event.new(name: "Doowap", user_id: 4, money_raised: 10.00, 
+    	inlieuof: 'birthday', goal_money: 10000.00, description: "Charity. Bam", 
+    	charity_name: "Olin College")
