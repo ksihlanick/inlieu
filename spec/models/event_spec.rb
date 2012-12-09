@@ -49,12 +49,12 @@ describe Event do
     it { should_not be_valid }
   end
 
-  describe "when goal_money is greater than zero" do
+  describe "when goal_money is zero" do
     before { @event.goal_money = 0}
     it { should_not be_valid }
   end
 
-  describe "when goal_money is less than 200,000" do
+  describe "when goal_money is more than 200,000" do
     before { @event.goal_money = 200001}
     it { should_not be_valid }
   end
