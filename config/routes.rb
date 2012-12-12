@@ -1,5 +1,7 @@
 Inlieu::Application.routes.draw do
 
+  root :to => 'welcome#index'
+
   resources :users
   resources :events
   resources :sessions, only: [:new, :create, :destroy]
@@ -7,7 +9,6 @@ Inlieu::Application.routes.draw do
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
-  root to: 'users#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

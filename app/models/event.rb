@@ -25,4 +25,18 @@ class Event < ActiveRecord::Base
 
   belongs_to :user
 
+  def set_event_attributes(event_hash)
+    self.name = event_hash[:name]
+    self.inlieuof = event_hash[:inlieuof]
+    self.description = event_hash[:description]
+    self.goal_money = event_hash[:goal_money]
+    self.charity_name = event_hash[:charity_name]
+    self.money_raised = 0
+    self.enddate = DateTime.now.utc + 15
+  end
+
+  def get_time_left()
+    self.enddate - DateTime.now.utc
+  end
+
 end
