@@ -4,6 +4,6 @@ config.action_mailer.smtp_settings = {
   :port                 => 587,
   :domain               => 'baci.lindsaar.net',
   :user_name            => 'kevin.sihlanick',
-  :password             => 'password',
+  :password             => 'GibsonL-1',
   :authentication       => 'plain',
   :enable_starttls_auto => true  }
