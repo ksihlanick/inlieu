@@ -3,7 +3,9 @@ Inlieu::Application.routes.draw do
   root :to => 'welcome#index'
 
   resources :users
-  resources :events
+  resources :events do
+    resources :payments
+  end
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/signin', to: 'sessions#new'

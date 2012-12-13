@@ -24,6 +24,7 @@ class Event < ActiveRecord::Base
   validates :goal_money, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }, :numericality => {:greater_than => 0, :less_than => 200000}
 
   belongs_to :user
+  has_many :payments
 
   def set_event_attributes(event_hash)
     self.name = event_hash[:name]

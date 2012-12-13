@@ -4,6 +4,7 @@ gem 'rails'
 gem 'stripe'
 gem 'google-analytics-rails'
 gem 'formtastic-bootstrap'
+gem 'stripe'
 #gem 'bootstrap-sass', '2.1'
 
 # Bundle edge Rails instead:
