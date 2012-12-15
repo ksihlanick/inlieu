@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails'
+gem 'figaro'
 gem 'stripe'
 gem 'google-analytics-rails'
 gem 'formtastic-bootstrap'

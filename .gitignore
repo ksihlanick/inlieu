@@ -13,5 +13,5 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/initializers/emailconfig.rb
-/initializers/stripeconfig.rb
+# Ignore application configuration
+/config/application.yml
