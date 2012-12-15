@@ -15,7 +15,7 @@
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible :charity_name, :description, :goal_money, :inlieuof, :money_raised, :name, :user_id
+  #attr_accessible :charity_name, :description, :goal_money, :inlieuof, :money_raised, :name, :user_id
 
   validates(:name, presence: true, length: {maximum: 50} )
   validates(:charity_name, presence: true, length: {maximum: 50} )

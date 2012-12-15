@@ -30,6 +30,9 @@
         <li>
           Time left: <%= @event.get_time_left() %> seconds left
         </li>
+        <li>
+          <%= link_to 'Give Me Money', new_event_payment_path(@event.id) %>
+        </li>
       </ul>
     </section>
   </aside>

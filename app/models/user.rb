@@ -10,7 +10,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation
+  #attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password
   
   before_save { |user| user.email = email.downcase }
@@ -30,6 +30,14 @@ class User < ActiveRecord::Base
   #     gone = yaay.destroy()
   #   end
   # end
+
+  def set_user_attributes(user_hash)
+    self.name = user_hash[:name]
+    self.email = user_hash[:email]
+    self.password = user_hash[:password]
+    self.password_confirmation = user_hash[:password_confirmation]
+    self.admin = false
+  end
 
   private
 

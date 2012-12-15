@@ -1,6 +1,7 @@
 class Payment < ActiveRecord::Base
   attr_accessible :name, :email, :money_raised, :stripe_card_token, :event_id
   attr_accessor :stripe_card_token
+  after_create :total
 
   belongs_to :event
   
@@ -13,5 +14,10 @@ class Payment < ActiveRecord::Base
     logger.error "Stripe error while creating customer: #{e.message}"
     errors.add :base, "There was a problem with your credit card."
     false
+  end
+
+  def total
+    self.event.money_raised = self.event.money_raised + self.money_raised
+    self.event.save!
   end
 end

@@ -1,19 +1,31 @@
 class PaymentsController < ApplicationController
   def index
-    @payments = Payment.all
+    #@payments = Payment.all
+    @event = Event.find(params[:event_id])
+    @payments = @event.payments
   end
 
   def create
-    @payment = Payment.new(params[:payment])
+    @event = Event.find(params[:event_id])
+    #@payment = Payment.new(params[:payment])
+    @payment = @event.payments.build(params[:payment])
     if @payment.save_with_payment
-      redirect_to @payment, :notice => "Thank you for donating!"
+      UserMailer.payment_email(@payment).deliver
+      #redirect_to @payment, :notice => "Thank you for donating!"
+      #redirect_to event_url(@payment.event_id)
+      #redirect_to (event_payments_url(@event))
+      #redirect_to event_payment
+      #redirect_to event_payment_path(@payment.id)
+      redirect_to event_payment_path(@event, @payment)
     else
       render :new
     end
   end
 
   def new
-    @payment = Payment.new
+    #@payment = Payment.new
+    @event = Event.find(params[:event_id])
+    @payment = @event.payments.build
   end
 
   def edit

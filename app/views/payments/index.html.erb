@@ -1,0 +1,26 @@
+<h1> Payments Index </h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Donation</th>
+    <th>Event</th>
+    <th>Event Owner</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @payments.each do |payment| %>
+  <tr>
+  <td> <%= payment.name %> </td>
+  <td> <%= payment.email %> </td>
+  <td> <%= payment.money_raised %> </td>
+  <td> <%= payment.event.name %> </td>
+  <td> <%= payment.event.user.name %> </td>
+  <td> <%= link_to 'Show', event_payment_path(@event, payment) %> </td>
+  </tr>
+<% end %>
+
+</table>
