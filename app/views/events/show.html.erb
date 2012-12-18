@@ -1,39 +1,23 @@
 <% provide(:title, @event.name) %>
-<div class="row">
-  <aside class="span4">
-    <section>
-      <ul>
-        <li>
-          <%= @event.name %>
-        </li>
-        <li>
-          <%= @event.user.name %>
-        </li>
-        <li>
-          <%= @event.description %>
-        </li>
-        <li>
-          Charity: <%= @event.charity_name %>
-        </li>
-        <li>
-          Inlieu of: <%= @event.inlieuof %>
-        </li>
-        <li>
-          Money Raised: <%= @event.money_raised %>
-        </li>
-        <li>
-          Goal: <%= @event.goal_money %>
-        </li>
-        <li>
-          EndTime: <%= @event.enddate %>
-        </li>
-        <li>
-          Time left: <%= @event.get_time_left() %> seconds left
-        </li>
-        <li>
-          <%= link_to 'Give Me Money', new_event_payment_path(@event.id) %>
-        </li>
-      </ul>
-    </section>
-  </aside>
+
+<div class="row center">
+
+  <h1><%= @event.name %></h1>
+  <h2> An event by <%= @event.user.name%> Inlieu of <%= @event.inlieuof %> for <%= @event.charity_name%> </h2>
+
+    <% if @event.video %>
+      <div>
+        <%= @event.video.html_safe %>
+    </div>
+    <% end %>
+</div>
+
+<div class="row center">
+  <p> Money Raised: <%=@event.money_raised%> GOAL: <%=@event.goal_money%> </p>
+  <p> EndTime: <%= @event.enddate %> Time left: <%= @event.get_time_left() %> seconds left </p>
+</div>
+
+<div class="row center">
+  <p> <%=@event.description%> </p>
+  <p> <%= link_to 'Give Me Money', new_event_payment_path(@event.id) %> </p>
 </div>

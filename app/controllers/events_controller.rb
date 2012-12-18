@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
-  before_filter :signed_in_user
+
+  before_filter :must_belong_or_admin, only: [:edit, :update]
+  before_filter :admin_user, only: [:destroy]
 
   def index
     @events = Event.all
@@ -21,7 +23,7 @@ class EventsController < ApplicationController
     end
   end
 
-  def edit
+  def edit #should belong to signed in user
     @event = Event.find(params[:id])
   end
 
@@ -29,7 +31,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def update
+  def update #should belong to signed in user
     @event = Event.find(params[:id])
     @event.set_event_attributes(params[:event])
     @event.user_id = current_user.id
@@ -41,9 +43,22 @@ class EventsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy #should be admin
     @event = Event.find(params[:id])
     @event.destroy
     redirect_to @event
   end
+
+private
+  def must_belong_or_admin
+    @event = Event.find(params[:id])
+    redirect_to root_path, flash: { error: "You don't have access to that" } unless
+      @event.user.id == current_user.id || current_user.admin?
+  end
+
+  def admin_user
+    #user has to be admin to view
+    redirect_to(root_path) unless current_user.admin?
+  end
+
 end

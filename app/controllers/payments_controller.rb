@@ -1,5 +1,8 @@
 class PaymentsController < ApplicationController
-  def index
+
+  before_filter :admin_user, only: [:index, :edit, :update, :destroy]
+
+  def index #admin
     #@payments = Payment.all
     @event = Event.find(params[:event_id])
     @payments = @event.payments
@@ -11,11 +14,6 @@ class PaymentsController < ApplicationController
     @payment = @event.payments.build(params[:payment])
     if @payment.save_with_payment
       UserMailer.payment_email(@payment).deliver
-      #redirect_to @payment, :notice => "Thank you for donating!"
-      #redirect_to event_url(@payment.event_id)
-      #redirect_to (event_payments_url(@event))
-      #redirect_to event_payment
-      #redirect_to event_payment_path(@payment.id)
       redirect_to event_payment_path(@event, @payment)
     else
       render :new
@@ -35,7 +33,7 @@ class PaymentsController < ApplicationController
     @payment = Payment.find(params[:id])
   end
 
-  def update
+  def update #admin
     @payment = Payment.find(params[:id])
     if @payment.update_attributes(params[:payment])
       flash[:success] = "Profile updated"
@@ -46,7 +44,7 @@ class PaymentsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy #admin
     @payment = Payment.find(params[:id])
     #@payment.destroy_events()
     @payment.destroy

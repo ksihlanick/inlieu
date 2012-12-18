@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
-  def index
+
+  before_filter :must_be_self_or_admin, only: [:show, :edit, :update]
+  before_filter :admin_user, only: [:index, :destroy]
+
+  def index #must be admin
     @users = User.all
   end
 
@@ -22,15 +26,15 @@ class UsersController < ApplicationController
   	@user = User.new
   end
 
-  def edit
+  def edit #must be the signed in user or admin
     @user = User.find(params[:id])
   end
 
-  def show
+  def show #must be THE signed in user or admin
     @user = User.find(params[:id])
   end
 
-  def update
+  def update #must be THE signed in user or admin 
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:success] = "Profile updated"
@@ -41,10 +45,23 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy #must be admin
     @user = User.find(params[:id])
     #@user.destroy_events()
     @user.destroy
     redirect_to @user
   end
+
+private
+  def must_be_self_or_admin
+    @user = User.find(params[:id])
+    redirect_to root_path, flash: { error: "You don't have access to that" } unless
+      @user == current_user || current_user.admin?
+end
+
+def admin_user
+  #user has to be admin to view
+  redirect_to(root_path) unless current_user.admin?
+end
+  
 end
