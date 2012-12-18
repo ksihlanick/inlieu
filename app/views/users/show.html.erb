@@ -28,6 +28,7 @@
     <th></th>
   </tr>
 
+  
 <% @user.events.each do |event| %>
   <tr>
   <td> <%= link_to event.name, event %> </td>
@@ -35,6 +36,9 @@
   <td> <%= event.goal_money %> </td>
   </tr>
 <% end %>
+
+  <td> <%= link_to 'Make a new event!!', new_event_path %> </td>
+  </tr>
 
 </table>
 
