@@ -34,9 +34,9 @@ class Event < ActiveRecord::Base
     self.charity_name = event_hash[:charity_name]
     self.money_raised = 0
     self.enddate = DateTime.now.utc + 15
-    if event_hash[:video]
+    #if event_hash[:video]
       self.video = event_hash[:video]
-    end
+    #end
   end
 
   def get_time_left()
