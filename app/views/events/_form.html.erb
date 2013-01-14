@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@event) do |f| %>
+      <%= render 'shared/event_error_messages' %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+
+      <%= f.label :occasion? %>
+      <%= f.text_field :inlieuof %>
+
+      <%= f.label :goal_money %>
+      <%= f.text_field :goal_money %>
+      
+      <%= f.label :charity_name %>
+      <%= f.text_field :charity_name %>
+
+      <%= f.label :video %>
+      <%= f.text_field :video %>
+
+      <div class="field">
+        <%= f.label :picture %>
+        <%= f.file_field :avatar %>
+      </div>
+
+      <%= f.submit "Edit my event", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

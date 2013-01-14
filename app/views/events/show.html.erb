@@ -29,6 +29,11 @@ $(function () {
     <% end %>
 </div>
 
+<div class="row center picture">
+  <%= image_tag @event.avatar.url(:medium) %>
+  <p> insert upload and picture here </p>
+</div>
+
 <div class="row center">
   <p> Money Raised: <%=@event.money_raised%> GOAL: <%=@event.goal_money%> </p>
   <p> EndTime: <%= @event.enddate %> Time left: <%= @event.get_time_left() %> seconds left </p>

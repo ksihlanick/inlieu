@@ -18,7 +18,11 @@ class Event < ActiveRecord::Base
   #attr_accessible :charity_name, :description, :goal_money, :inlieuof, :money_raised, :name, :user_id
 
   attr_accessible :avatar
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :avatar, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>'
+  }
 
   validates(:name, presence: true, length: {maximum: 50} )
   validates(:charity_name, presence: true, length: {maximum: 50} )
@@ -40,6 +44,7 @@ class Event < ActiveRecord::Base
     self.video = event_hash[:video]
     self.approved = false
     self.rejected = false
+    self.avatar = event_hash[:avatar]
   end
 
   def set_approved()
