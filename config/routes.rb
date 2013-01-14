@@ -8,9 +8,25 @@ Inlieu::Application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
 
+  #match 'events/:id/approve' => 'approvals#create'
+
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
+  match '/admin', to: 'admin#index'
+
+  namespace :admin do
+    resources :events do
+      resources :approvals, only: [:create]
+      resources :rejections, only: [:new, :create]
+      resources :payments
+    end
+  end
+
+  #controller :approvals do
+    #get 'approve' => new
+    #post 'approve' => create
+  #end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

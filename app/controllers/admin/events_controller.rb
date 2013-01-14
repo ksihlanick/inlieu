@@ -1,12 +1,14 @@
-class EventsController < ApplicationController
+class Admin::EventsController < ApplicationController
 
-  before_filter :signed_in_user, only: [:new, :create, :edit, :update]
-  before_filter :must_belong_or_admin, only: [:edit, :update]
-  before_filter :must_belong_or_admin_pending, only: [:show]
-  before_filter :admin_user, only: [:destroy]
+  before_filter :signed_in_user
+  before_filter :admin_user
 
   def index
+    #@events = Event.all
     @events = Event.where("enddate > ? AND approved = ?", DateTime.now.utc, true)
+    @pend_events = Event.where("enddate > ? AND approved = ?", DateTime.now.utc, false)
+    @past_events = Event.where("enddate < ?", DateTime.now.utc)
+    @rejected_events = Event.where("rejected = ?", true)
   end
 
   def new
@@ -38,7 +40,7 @@ class EventsController < ApplicationController
     @event.set_event_attributes(params[:event])
     @event.user_id = current_user.id
     if @event.save
-      flash[:success] = "EVENT IS DIFFERENT NOW WOO!!!"
+      flash[:success] = "Your event has been updated!!!"
       redirect_to @event
     else
       render 'new'
@@ -60,16 +62,7 @@ private
 
   def admin_user
     #user has to be admin to view
-    redirect_to(root_path) unless current_user.admin?
-  end
-
-  def must_belong_or_admin_pending
-    @event = Event.find(params[:id])
-    #if event is not approved
-    if @event.approved == false
-      redirect_to root_path, flash: { error: "You don't have access to that" } unless
-        @event.user.id == current_user.id || current_user.admin?
-    end
+    redirect_to root_path, flash: { error: "You don't have access to that" } unless current_user.admin?
   end
 
 end

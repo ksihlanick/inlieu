@@ -1,0 +1,89 @@
+<h1> Events Index </h1>
+<div class="row table">
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Money</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+  <td> <%= link_to event.name, event %> </td>
+	<td> <%= event.name %> </td>
+	<td> <%= event.money_raised %> </td>
+  <td> <%= event.approved %> </td>
+  <td> <%= link_to 'Dis-Approve Event', event_approvals_path(event.id), html_options = {:method => :create} %> </td>
+<!-- 	<td> <%= link_to 'Destroy', event, html_options = {:method => :delete} %> </td> -->
+  </tr>
+<% end %>
+
+  <tr>
+  <td> <%= link_to 'Make a new event!!', new_event_path %> </td>
+  </tr>
+
+</table>
+
+</div>
+
+
+<h1> Past Events </h1>
+<div class="row table">
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Money</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @past_events.each do |event| %>
+  <tr>
+  <td> <%= link_to event.name, event %> </td>
+  <td> <%= event.name %> </td>
+  <td> <%= event.money_raised %> </td>
+  <td> <%= event.approved %> </td>
+<!--  <td> <%= link_to 'Destroy', event, html_options = {:method => :delete} %> </td> -->
+  </tr>
+<% end %>
+
+  <tr>
+  <td> <%= link_to 'Make a new event!!', new_event_path %> </td>
+  </tr>
+
+</table>
+
+</div>
+
+<h1> Pending Events </h1>
+<div class="row table">
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Money</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pend_events.each do |event| %>
+  <tr>
+  <td> <%= link_to event.name, event %> </td>
+  <td> <%= event.name %> </td>
+  <td> <%= event.money_raised %> </td>
+  <td> <%= event.approved %> </td>
+  <td> <%= link_to 'Approve Event', event_approvals_path(event.id), html_options = {:method => :create} %> </td>
+<!--  <td> <%= link_to 'Destroy', event, html_options = {:method => :delete} %> </td> -->
+  </tr>
+<% end %>
+
+  <tr>
+  <td> <%= link_to 'Make a new event!!', new_event_path %> </td>
+  </tr>
+
+</table>
+
+</div>

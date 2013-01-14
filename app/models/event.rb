@@ -17,6 +17,9 @@
 class Event < ActiveRecord::Base
   #attr_accessible :charity_name, :description, :goal_money, :inlieuof, :money_raised, :name, :user_id
 
+  attr_accessible :avatar
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+
   validates(:name, presence: true, length: {maximum: 50} )
   validates(:charity_name, presence: true, length: {maximum: 50} )
   validates(:goal_money, presence: true )
@@ -34,13 +37,30 @@ class Event < ActiveRecord::Base
     self.charity_name = event_hash[:charity_name]
     self.money_raised = 0
     self.enddate = DateTime.now.utc + 15
-    #if event_hash[:video]
-      self.video = event_hash[:video]
-    #end
+    self.video = event_hash[:video]
+    self.approved = false
+    self.rejected = false
+  end
+
+  def set_approved()
+    self.enddate = DateTime.now.utc + 15
+    self.approved = true
+  end
+
+  def set_rejected()
+    self.rejected = true
   end
 
   def get_time_left()
     self.enddate - DateTime.now.utc
+  end
+
+  def is_active()
+    if (self.enddate > DateTime.now.utc) && (self.approved == true)
+      return true
+    else
+      return false
+    end
   end
 
 end

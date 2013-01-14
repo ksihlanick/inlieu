@@ -8,6 +8,8 @@ gem 'formtastic-bootstrap'
 gem 'stripe'
 #gem 'bootstrap-sass', '2.1'
 
+gem "paperclip", "~> 3.0"
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

@@ -39,7 +39,7 @@ $(function () {
   <% if (@event.is_active) %>
     <p> <%=link_to 'DONATE NOW', new_event_payment_path(@event.id) %> </p> 
     <% else %>
-      <p> Funding for this event is not currently available </p>
+      <p> Funding for this event has now ended </p>
     <% end %>
 </div>
 

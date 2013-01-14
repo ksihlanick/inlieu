@@ -1,0 +1,13 @@
+<h1 class="orange">Send a nasty email!</h1>
+
+<% provide(:title, 'Approval Now') %>
+
+<p> <%= link_to 'Reject Event!!', admin_event_rejections_path(params[:event_id]), html_options = {:method => :create} %>  </p>
+
+
+
+<%= form_tag(admin_event_rejections_path(params[:event_id]), :method => :create) do %>
+  <%= label_tag(:text, "email text:") %>
+  <%= text_field_tag(:text) %>
+  <%= submit_tag("Send Disapprove Email") %>
+<% end %>

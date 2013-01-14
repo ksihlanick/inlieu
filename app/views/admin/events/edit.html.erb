@@ -1,6 +1,6 @@
-<h1 class="orange">Make a new event and raise money!</h1>
+<h1>Events#new</h1>
 
-<% provide(:title, 'New Event') %>
+<% provide(:title, 'Edit Event') %>
 
 <div class="row">
   <div class="span6 offset3">
@@ -13,7 +13,7 @@
       <%= f.label :description %>
       <%= f.text_field :description %>
 
-      <%= f.label :occasion? %>
+      <%= f.label :inlieuof %>
       <%= f.text_field :inlieuof %>
 
       <%= f.label :goal_money %>
@@ -25,7 +25,7 @@
       <%= f.label :video %>
       <%= f.text_field :video %>
 
-      <%= f.submit "Create my event", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Edit my event", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>
