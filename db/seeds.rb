@@ -12,7 +12,7 @@
     @user = User.create do |u|
     u.name = "Kevin Sihlanick"
     u.email = "kevin@inlieugiving.net"
-    u.password_digest = "$2a$10$iKX3RFX9jhHAAHH6.2Grc.0u51GuD4novDej3s3PZ/gyYCepY/2wG"
+    u.password_digest = "$2a$10$3PtGPjueYFXd/TsSEnvNi.qF.lShdysqz/uRlVmHJ5NWOksgmVMqy"
     u.admin = true
   end
 
