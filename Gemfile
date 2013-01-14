@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~> 3.2.11'
 gem 'figaro'
 gem 'stripe'
 gem 'google-analytics-rails'
@@ -9,6 +9,7 @@ gem 'stripe'
 #gem 'bootstrap-sass', '2.1'
 
 gem "paperclip", "~> 3.0"
+gem 'aws-sdk', '~> 1.6.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
