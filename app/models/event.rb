@@ -60,6 +60,10 @@ class Event < ActiveRecord::Base
     self.enddate - DateTime.now.utc
   end
 
+  def get_approved()
+    return self.approved
+  end
+
   def is_active()
     if (self.enddate > DateTime.now.utc) && (self.approved == true)
       return true

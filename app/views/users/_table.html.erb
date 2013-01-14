@@ -1,0 +1,29 @@
+<div class="row table">
+  <table>
+    <tr>
+      <th>Event Name</th>
+      <th>charity</th>
+      <th>Money</th>
+      <th>Goal</th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% events.each do |event| %>
+    <tr>
+    <td> <%= link_to event.name, event %> </td>
+    <td> <%= event.charity_name %> </td>
+    <td> <%= number_to_currency(event.money_raised/100) %> </td>
+    <td> <%= number_to_currency(event.goal_money/100) %> </td>
+    <% unless event.get_approved() %>
+    <td> <%= link_to 'edit this event', edit_event_path(event.id) %> </td>
+    <% end %>
+  <% end %>
+
+  <tr>
+    <td> <%= link_to 'Make a new event!!', new_event_path %> </td>
+  </tr>
+
+  </table>
+
+</div>

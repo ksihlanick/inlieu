@@ -71,7 +71,7 @@
   <%= text_field_tag :address_state, nil, name: nil %>  
   </div>
   <div class="field">
-    <%= f.label :amount %>
+    <%= f.label :amount, "Donation ($.CC)" %>
     <%= f.text_field :money_raised %>
   </div>
   <% if @payment.stripe_card_token.present? %>
@@ -79,11 +79,11 @@
   <% else %>
     <div class="field">
       <%= label_tag :card_number, "Credit Card Number" %>
-      <%= text_field_tag :card_number, nil, name: nil %>
+      <%= text_field_tag :card_number, nil, name: nil, :maxlength => 20 %>
     </div>
     <div class="field">
       <%= label_tag :card_code, "Security Code on Card (CVC)" %>
-      <%= text_field_tag :card_code, nil, name: nil %>
+      <%= text_field_tag :card_code, nil, name: nil, :maxlength => 4 %>
     </div>
     <div class="field">
       <%= label_tag :card_month, "Card Expiration" %>

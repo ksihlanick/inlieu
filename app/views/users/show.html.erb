@@ -2,6 +2,8 @@
 
 <% if (@user.admin) %>
   <p> You are Admin </p>
+  <p> <%= link_to 'Admin Dashboard', admin_path %>
+
 <% end %>
 
 <div class="row center">
@@ -21,29 +23,29 @@
     </section>
 </div>
 
-<div class="row table">
+<h4> <%= link_to 'Make a new event!!', new_event_path %> </h4>
 
-<table>
-  <tr>
-    <th>Your Events</th>
-    <th>Money Raised</th>
-    <th>Goal Money</th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="bs-docs-example tabs-top">
+  <ul id="myTab" class="nav nav-tabs">
+    <li class="active"><a href="#pending" data-toggle="tab">Pending</a></li>
+    <li><a href="#active" data-toggle="tab">Active</a></li>
+    <li><a href="#rejected" data-toggle="tab">Rejected</a></li>
+    <li><a href="#past" data-toggle="tab">Past</a></li>
+  </ul>
 
-  
-<% @user.events.each do |event| %>
-  <tr>
-  <td> <%= link_to event.name, event %> </td>
-  <td> <%= event.money_raised %> </td>
-  <td> <%= event.goal_money %> </td>
-  </tr>
-<% end %>
 
-  <td> <%= link_to 'Make a new event!!', new_event_path %> </td>
-  </tr>
-
-</table>
-
+  <div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade" id="active">
+      <%= render :partial => "table", :locals => { :events => @user.events.where("enddate > ? AND approved = ?", DateTime.now.utc, true) } %>
+    </div>
+    <div class="tab-pane fade in active" id="pending">
+      <%= render :partial => "table", :locals => { :events => @user.events.where("enddate > ? AND approved = ?", DateTime.now.utc, false) } %>
+    </div>
+    <div class="tab-pane fade" id="rejected">
+      <%= render :partial => "table", :locals => { :events => @user.events.where("enddate < ?", DateTime.now.utc) } %>
+    </div>
+    <div class="tab-pane fade" id="past">
+      <%= render :partial => "table", :locals => { :events => @user.events.where("rejected = ?", true) } %>
+    </div>
+  </div>
 </div>

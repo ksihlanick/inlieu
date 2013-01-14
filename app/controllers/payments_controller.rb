@@ -1,8 +1,8 @@
 class PaymentsController < ApplicationController
 
-  before_filter :admin_user, only: [:index, :edit, :update, :destroy]
+  before_filter :admin_user, only: [:edit, :update, :destroy]
 
-  def index #admin
+  def index
     #@payments = Payment.all
     @event = Event.find(params[:event_id])
     @payments = @event.payments
@@ -12,6 +12,7 @@ class PaymentsController < ApplicationController
     @event = Event.find(params[:event_id])
     #@payment = Payment.new(params[:payment])
     @payment = @event.payments.build(params[:payment])
+    @payment.money_raised = @payment.money_raised * 100
     if @payment.save_with_payment
       UserMailer.payment_email(@payment).deliver
       redirect_to event_payment_path(@event, @payment)
@@ -50,4 +51,11 @@ class PaymentsController < ApplicationController
     @payment.destroy
     redirect_to @payment
   end
+
+  private
+  def admin_user
+    #user has to be admin to view
+    redirect_to(root_path) unless current_user.admin?
+  end
+
 end

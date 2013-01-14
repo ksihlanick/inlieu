@@ -1,12 +1,12 @@
-<h1> Payments Index </h1>
+<h1> <%= @payments.first.event.name %> Donations </h1>
 
+<div class="row table">
 <table>
   <tr>
-    <th>Name</th>
-    <th>Email</th>
     <th>Donation</th>
+    <th>Donor</th>
+    <th>Email</th>
     <th>Event</th>
-    <th>Event Owner</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,13 +14,14 @@
 
 <% @payments.each do |payment| %>
   <tr>
+  <td> <%= number_to_currency(payment.money_raised/100) %> </td>
   <td> <%= payment.name %> </td>
   <td> <%= payment.email %> </td>
-  <td> <%= payment.money_raised %> </td>
   <td> <%= payment.event.name %> </td>
-  <td> <%= payment.event.user.name %> </td>
-  <td> <%= link_to 'Show', event_payment_path(@event, payment) %> </td>
   </tr>
 <% end %>
 
 </table>
+</div>
+
+<%= link_to 'back to event', event_path(@payments.first.event.id) %>

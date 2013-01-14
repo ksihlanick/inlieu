@@ -5,6 +5,15 @@ class Payment < ActiveRecord::Base
 
   belongs_to :event
   
+
+  def set_payment_attributes(payment_hash)
+    self.name = payment_hash[:name]
+    self.email = payment_hash[:email]
+    self.money_raised = payment_hash[:money_raised]
+    self.stripe_card_token = payment_hash[:stripe_card_token]
+    self.event_id = payment_hash[:event_id]
+  end
+
   def save_with_payment
     if valid?
       mymoney = Stripe::Charge.create(:amount => money_raised, :currency => "usd", :card => stripe_card_token, :description => email)      

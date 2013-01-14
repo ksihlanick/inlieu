@@ -1,125 +1,49 @@
 <h1> Events Admin Index </h1>
-<h1> Events Index </h1>
-<div class="row table">
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Money</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @events.each do |event| %>
-  <tr>
-  <td> <%= link_to event.name, event %> </td>
-	<td> <%= event.name %> </td>
-	<td> <%= event.money_raised %> </td>
-  <td> <%= event.approved %> </td>
-<!--   <td> <%= link_to 'Dis-Approve Event', admin_event_approvals_path(event.id), html_options = {:method => :create} %> </td> -->
-<!-- 	<td> <%= link_to 'Destroy', event, html_options = {:method => :delete} %> </td> -->
-  </tr>
-<% end %>
-
-  <tr>
-  <td> <%= link_to 'Make a new event!!', new_event_path %> </td>
-  </tr>
-
-</table>
-
-</div>
+<!-- <ul class="nav nav-tabs">
+  <li><a href="#active" data-toggle="tab">Active</a></li>
+  <li><a href="#pending" data-toggle="tab">Pending</a></li>
+  <li><a href="#rejected" data-toggle="tab">Rejected</a></li>
+</ul> -->
 
 
-<h1> Past Events </h1>
-<div class="row table">
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Money</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<!-- <ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#home">Home</a></li>
+  <li><a href="#profile">Profile</a></li>
+  <li><a href="#messages">Messages</a></li>
+  <li><a href="#settings">Settings</a></li>
+</ul>
+ 
+<div class="tab-content">
+  <div class="tab-pane active" id="home">w3rd</div>
+  <div class="tab-pane" id="profile">hello</div>
+  <div class="tab-pane" id="messages">there</div>
+  <div class="tab-pane" id="settings">yay</div>
+</div> -->
+        <!-- Tabs
+        ================================================== -->
 
-<% @past_events.each do |event| %>
-  <tr>
-  <td> <%= link_to event.name, event %> </td>
-  <td> <%= event.name %> </td>
-  <td> <%= event.money_raised %> </td>
-  <td> <%= event.approved %> </td>
-<!--  <td> <%= link_to 'Destroy', event, html_options = {:method => :delete} %> </td> -->
-  </tr>
-<% end %>
-
-  <tr>
-  <td> <%= link_to 'Make a new event!!', new_event_path %> </td>
-  </tr>
-
-</table>
-
-</div>
-
-<h1> Pending Events </h1>
-<div class="row table">
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Money</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @pend_events.each do |event| %>
-  <tr>
-  <td> <%= link_to event.name, event %> </td>
-  <td> <%= event.name %> </td>
-  <td> <%= event.money_raised %> </td>
-  <td> <%= event.approved %> </td>
-  <td> <%= link_to 'Approve Event', admin_event_approvals_path(event.id), html_options = {:method => :create} %> </td>
-  <td> <%= link_to 'Do Not Approve Event (email)', new_admin_event_rejection_path(event.id) %> </td>
-<!--  <td> <%= link_to 'Destroy', event, html_options = {:method => :delete} %> </td> -->
-  </tr>
-<% end %>
-
-  <tr>
-  <td> <%= link_to 'Make a new event!!', new_event_path %> </td>
-  </tr>
-
-</table>
-
-</div>
+<div class="bs-docs-example tabs-top">
+  <ul id="myTab" class="nav nav-tabs">
+    <li class="active"><a href="#pending" data-toggle="tab">Pending</a></li>
+    <li><a href="#active" data-toggle="tab">Active</a></li>
+    <li><a href="#rejected" data-toggle="tab">Rejected</a></li>
+    <li><a href="#past" data-toggle="tab">Past</a></li>
+  </ul>
 
 
-
-
-
-
-<h1> REJECTED Events </h1>
-<div class="row table">
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Money</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @rejected_events.each do |event| %>
-  <tr>
-  <td> <%= link_to event.name, event %> </td>
-  <td> <%= event.name %> </td>
-  <td> <%= event.money_raised %> </td>
-  <td> <%= event.approved %> </td>
-  <td> <%= event.rejected %> </td>
-  </tr>
-<% end %>
-
-  <tr>
-  <td> <%= link_to 'Make a new event!!', new_event_path %> </td>
-  </tr>
-
-</table>
-
+  <div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="pending">
+      <%= render :partial => "table", :locals => { :events => @pend_events } %>
+    </div>
+    <div class="tab-pane fade" id="active">
+      <%= render :partial => "table", :locals => { :events => @events } %>
+    </div>
+    <div class="tab-pane fade" id="rejected">
+      <%= render :partial => "table", :locals => { :events => @rejected_events } %>
+    </div>
+    <div class="tab-pane fade" id="past">
+      <%= render :partial => "table", :locals => { :events => @past_events } %>
+    </div>
+  </div>
 </div>

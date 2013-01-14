@@ -5,15 +5,18 @@
 
 body > iframe { display: none; }
 
-#defaultCountdown { width: 240px; height: 45px; }
+#defaultCountdown { width: 240px; height: 45px; float: center;}
 </style>
 
 <script>
 $(function () {
-  var austDay = new Date();
-  austDay = new Date(austDay.getFullYear() + 1, 1 - 1, 26);
-  $('#defaultCountdown').countdown({until: austDay});
+  //var austDay = new Date();
+  //austDay = new Date(austDay.getFullYear() + 1, 1 - 1, 26);
+  //austDay = new Date()
+  var date = new Date(<%= @event.enddate.utc.to_i*1000 %>);
+  $('#defaultCountdown').countdown({until: date});
   $('#year').text(austDay.getFullYear());
+
 });
 </script>
 
@@ -31,12 +34,29 @@ $(function () {
 
 <div class="row center picture">
   <%= image_tag @event.avatar.url(:medium) %>
-  <p> insert upload and picture here </p>
+</div>
+
+<p></p>
+
+<div class="row center picture">
+  <p>Time Remaining</p>
+</div>
+
+
+<div class="container">
+  <div class="row" id="login-container">
+    <div class="span8 offset4">
+       <div id="defaultCountdown" style = ></div>
+    </div>
+  </div>
+</div>
+
+<div class = "row center countdown">
+<div id="defaultCountdown" style = ></div>
 </div>
 
 <div class="row center">
-  <p> Money Raised: <%=@event.money_raised%> GOAL: <%=@event.goal_money%> </p>
-  <p> EndTime: <%= @event.enddate %> Time left: <%= @event.get_time_left() %> seconds left </p>
+  <p> Money Raised: <%=number_to_currency(@event.money_raised/100)%> GOAL: <%=number_to_currency(@event.goal_money/100)%> </p>
 </div>
 
 <div class="row center">
@@ -46,6 +66,5 @@ $(function () {
     <% else %>
       <p> Funding for this event is not currently available </p>
     <% end %>
+  <p> <%=link_to "See who's donated already", event_payments_path(@event.id) %></p>
 </div>
-
-<div id="defaultCountdown"></div>

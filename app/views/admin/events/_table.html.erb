@@ -1,0 +1,26 @@
+<div class="row table">
+  <table>
+    <tr>
+      <th>Event Name</th>
+      <th>charity</th>
+      <th>Money</th>
+      <th>Goal</th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% events.each do |event| %>
+    <tr>
+    <td> <%= link_to event.name, event %> </td>
+    <td> <%= event.charity_name %> </td>
+    <td> <%= number_to_currency(event.money_raised/100) %> </td>
+    <td> <%= number_to_currency(event.goal_money/100) %> </td>
+    <% unless event.get_approved() %>
+    <td> <%= link_to 'Approve Event', admin_event_approvals_path(event.id), html_options = {:method => :create} %> </td>
+    <td> <%= link_to 'Do Not Approve Event (send email)', new_admin_event_rejection_path(event.id) %> </td>
+    </tr>
+    <% end %>
+  <% end %>
+  </table>
+
+</div>
