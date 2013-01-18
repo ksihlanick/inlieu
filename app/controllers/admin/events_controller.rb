@@ -6,7 +6,7 @@ class Admin::EventsController < ApplicationController
   def index
     #@events = Event.all
     @events = Event.where("enddate > ? AND approved = ?", DateTime.now.utc, true)
-    @pend_events = Event.where("enddate > ? AND approved = ?", DateTime.now.utc, false)
+    @pend_events = Event.where("enddate > ? AND approved = ? AND rejected = ?", DateTime.now.utc, false, false)
     @past_events = Event.where("enddate < ?", DateTime.now.utc)
     @rejected_events = Event.where("rejected = ?", true)
   end
