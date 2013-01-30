@@ -1,10 +1,9 @@
 class UserMailer < ActionMailer::Base
   default :from => "kevin.sihlanick@gmail.com"
- 
+
   def welcome_email(user)
     @user = user
-    @url  = "http://example.com/login"
-    mail(:to => user.email, :subject => "Welcome to InLieu!")
+    mail(:to => user.email, :subject => "Welcome to InLieu! Confirm your email")
   end
 
   def payment_email(payment)
@@ -23,4 +22,9 @@ class UserMailer < ActionMailer::Base
     @text = text;
     mail(:to => @user.email, :subject => "URGENT! Your InLieu Campaign needs you")
   end
+
+  def password_reset(user)  
+    @user = user  
+    mail :to => user.email, :subject => "InLieu Password Reset"  
+  end  
 end

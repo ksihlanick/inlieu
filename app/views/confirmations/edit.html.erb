@@ -1,0 +1,6 @@
+<h1>Confirm Email</h1>  
+  
+<%= form_for @user, :url => confirmation_path(params[:id]) do |f| %>  
+<%= render 'shared/error_messages' %>
+  <div class="actions"><%= f.submit "Confirm Email" %></div>  
+<% end %>  

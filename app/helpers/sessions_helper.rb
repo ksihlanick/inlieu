@@ -9,6 +9,10 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def confirmed?
+    current_user.confirmed?
+  end
+
   def current_user=(user)
     @current_user = user
   end

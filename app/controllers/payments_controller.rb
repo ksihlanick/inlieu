@@ -52,10 +52,10 @@ class PaymentsController < ApplicationController
     redirect_to @payment
   end
 
-  private
-  def admin_user
-    #user has to be admin to view
-    redirect_to(root_path) unless current_user.admin?
-  end
+  # private
+  # def admin_user
+  #   #user has to be admin to view
+  #   redirect_to(root_path) unless current_user.admin?
+  # end
 
 end

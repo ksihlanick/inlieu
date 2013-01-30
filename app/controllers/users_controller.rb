@@ -11,12 +11,15 @@ class UsersController < ApplicationController
     #@user = User.new(params[:user])
     @user = User.create
     @user.set_user_attributes(params[:user])
+    #generate token
+    @user.generate_token(:confirm_token) 
   	if @user.save
       # Tell the UserMailer to send a welcome Email after save
       UserMailer.welcome_email(@user).deliver
-      sign_in @user
-      flash[:success] = "Welcome!!"
-  		redirect_to @user
+      #sign_in @user
+      flash[:success] = "Email Sent. Check email to sign in"
+  		redirect_to root_path
+      
   	else
   		render 'new'
   	end
@@ -52,17 +55,17 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
-private
-  def must_be_self_or_admin
-    @user = User.find(params[:id])
-    redirect_to root_path, flash: { error: "You don't have access to that" } unless
-      @user == current_user || current_user.admin?
-end
+# private
+#   def must_be_self_or_admin
+#     @user = User.find(params[:id])
+#     redirect_to root_path, flash: { error: "You don't have access to that" } unless
+#       @user == current_user || current_user.admin?
+# end
 
-def admin_user
-  #user has to be admin to view
-  redirect_to root_path, flash: { error: "You don't have access to that" }  unless 
-  current_user.admin?
-end
+# def admin_user
+#   #user has to be admin to view
+#   redirect_to root_path, flash: { error: "You don't have access to that" }  unless 
+#   current_user.admin?
+# end
   
 end

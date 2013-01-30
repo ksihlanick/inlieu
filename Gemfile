@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2.11'
 gem 'figaro'
-gem 'stripe'
 gem 'google-analytics-rails'
 gem 'formtastic-bootstrap'
 gem 'stripe'
@@ -37,6 +36,7 @@ group :assets do
 end
 
 gem 'jquery-rails', '2.0.2'
+gem 'jquery-ui-rails'
 
 group :test do
 	gem 'capybara', '1.1.2'

@@ -6,6 +6,12 @@
 
 <% end %>
 
+<% if (@user.confirmed) %>
+  <p> You are confirmed </p>
+  <% else %>
+  <p> you are not yet confirmed </p>
+<% end %>
+
 <div class="row center">
   <h1>Your InLieu Profile</h1>
 </div>

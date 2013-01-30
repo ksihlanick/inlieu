@@ -4,6 +4,6 @@ Welcome to inlieugiving.com, <%= @user.name %>
 You have successfully signed up to inlieugiving.com, now go and make an event and help a charity! You can do it!
 your username is: <%= @user.email %>.
  
-To login to the site, just follow this link: TBD.
+To login to the site, just follow this link: <%= user_url(@user.id) %>  
  
 Thanks for joining and have a great day!

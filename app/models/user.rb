@@ -20,8 +20,10 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence:true, format: { with: VALID_EMAIL_REGEX },
   					uniqueness: { case_sensitive: false}
-  validates :password, presence: true, length: {minimum: 6 }
+  validates :password, presence: true, length: {minimum: 6 }  
   validates :password_confirmation, presence: true
+
+  #validates_presence_of :password, :on => :create
 
   has_many :events#, dependent: :destroy
 
@@ -37,7 +39,32 @@ class User < ActiveRecord::Base
     self.password = user_hash[:password]
     self.password_confirmation = user_hash[:password_confirmation]
     self.admin = false
+    self.confirmed = false
   end
+
+  def generate_token(column)  
+      begin  
+        self[column] = SecureRandom.urlsafe_base64  
+      end while User.exists?(column => self[column])  
+    end  
+
+  def send_password_reset  
+    generate_token(:password_reset_token)  
+    self.password_reset_sent_at = Time.zone.now  
+    save!(:validate => false) 
+    UserMailer.password_reset(self).deliver  
+  end
+
+  def set_confirmation
+    self.confirmed = true
+    save!(:validate => false)
+  end
+
+  def update_password(user_hash)
+    self.password = user_hash[:password]
+    self.password_confirmation = user_hash[:password_confirmation]
+    save
+  end  
 
   private
 

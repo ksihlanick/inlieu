@@ -10,8 +10,14 @@
       your username is: <%= @user.email %>.<br/>
     </p>
     <p>
-      To login to the site, just follow this link: TBD.
+      To login to the site, just follow this link: <%= link_to 'Your Profile Page', user_path(@user.id) %> <%= link_to "users", user_path(1) %>
+      <%= user_url(@user.id) %>  
+    </p>
+    <p>
+      <%= edit_confirmation_url(@user.confirm_token) %>
     </p>
     <p>Thanks for joining and have a great day!</p>
+
+
   </body>
 </html>

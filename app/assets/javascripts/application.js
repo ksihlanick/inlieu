@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require jquery.ui.dialog
+//= require jquery.youtubepopup
 //= require_tree .

@@ -1,5 +1,9 @@
 Inlieu::Application.routes.draw do
 
+  get "confirmations/update"
+
+  get "password_resets/new"
+
   root :to => 'welcome#index'
 
   resources :users
@@ -14,6 +18,14 @@ Inlieu::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
 
   match '/admin', to: 'admin#index'
+
+  match '/help', to: 'static_pages#help'
+  match '/about', to: 'static_pages#about'
+  match '/contact', to: 'static_pages#contact'
+
+  resources :password_resets
+  resources :confirmations
+
 
   namespace :admin do
     resources :events do
