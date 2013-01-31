@@ -15,4 +15,5 @@
 //= require bootstrap
 //= require jquery.ui.dialog
 //= require jquery.youtubepopup
+//= require jquery.countdown
 //= require_tree .

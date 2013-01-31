@@ -1,3 +1,42 @@
+<div>
+
+  <p>This form is currently in test mode. All succesful charges will be posted to my stripe account, but no real money will change hands.</p>
+  <p></p>
+
+  <p>Use a test credit card number, any 3 digit CVC, and a valid expiration date</p>
+  <p></p>
+
+  <p>Test Credit card numbers</p>
+  <p></p>
+
+  <table>
+    <tr>
+      <th>Number</th>
+      <th>Card Type</th>
+    </tr>
+    <tr>
+      <th>4242424242424242</th>
+      <th>Visa</th>
+    </tr>
+    <tr>
+      <th>4242424242424242</th>
+      <th>Visa</th>
+    </tr>
+    <tr>
+      <th>5555555555554444</th>
+      <th>MasterCard</th>
+    </tr>
+    <tr>
+      <th>5105105105105100</th>
+      <th>MasterCard</th>
+    </tr>
+  </table>
+
+  <p></p>
+
+</div>
+
+
 <%= form_for [@event, @payment] do |f| %>
   <% if @payment.errors.any? %>
     <div class="error_messages">
@@ -9,44 +48,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-
-    <p>This form is currently in test mode. All succesful charges will be posted to my stripe account, but no real money will change hands.</p>
-    <p></p>
-
-    <p>Use a test credit card number, any 3 digit CVC, and a valid expiration date</p>
-    <p></p>
-
-    <p>Test Credit card numbers</p>
-    <p></p>
-
-    <table>
-      <tr>
-        <th>Number</th>
-        <th>Card Type</th>
-      </tr>
-      <tr>
-        <th>4242424242424242</th>
-        <th>Visa</th>
-      </tr>
-      <tr>
-        <th>4242424242424242</th>
-        <th>Visa</th>
-      </tr>
-      <tr>
-        <th>5555555555554444</th>
-        <th>MasterCard</th>
-      </tr>
-      <tr>
-        <th>5105105105105100</th>
-        <th>MasterCard</th>
-      </tr>
-    </table>
-
-    <p></p>
-
-  </div>
 
   <%= f.hidden_field :stripe_card_token %>
 
@@ -81,6 +82,7 @@
       <%= label_tag :card_number, "Credit Card Number" %>
       <%= text_field_tag :card_number, nil, name: nil, :maxlength => 20 %>
     </div>
+    <div id="credit_card_number_error"></div>
     <div class="field">
       <%= label_tag :card_code, "Security Code on Card (CVC)" %>
       <%= text_field_tag :card_code, nil, name: nil, :maxlength => 4 %>

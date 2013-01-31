@@ -1,7 +1,6 @@
 <% provide(:title, @event.name) %>
 
 <style type="text/css">
-@import "css/jquery.countdown.css";
 
 body > iframe { display: none; }
 
@@ -15,7 +14,7 @@ $(function () {
   //austDay = new Date()
   var date = new Date(<%= @event.enddate.utc.to_i*1000 %>);
   $('#defaultCountdown').countdown({until: date});
-  $('#year').text(austDay.getFullYear());
+  $('#year').text(date.getFullYear());
 
 });
 </script>
