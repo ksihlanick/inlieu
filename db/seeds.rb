@@ -14,6 +14,7 @@
     u.email = "kevin@inlieugiving.net"
     u.password_digest = "$2a$10$3PtGPjueYFXd/TsSEnvNi.qF.lShdysqz/uRlVmHJ5NWOksgmVMqy"
     u.admin = true
+    u.confirmed = true
   end
 
   @user.save(:validate => false)
