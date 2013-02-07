@@ -41,6 +41,12 @@ class User < ActiveRecord::Base
     self.admin = false
     self.confirmed = false
   end
+  def update_user_attributes(user_hash)
+    self.name = user_hash[:name]
+    self.email = user_hash[:email]
+    self.password = user_hash[:password]
+    self.password_confirmation = user_hash[:password_confirmation]
+  end
 
   def generate_token(column)  
       begin  

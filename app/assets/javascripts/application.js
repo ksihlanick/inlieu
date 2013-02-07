@@ -16,4 +16,5 @@
 //= require jquery.ui.dialog
 //= require jquery.youtubepopup
 //= require jquery.countdown
+//= require jquery.validate
 //= require_tree .

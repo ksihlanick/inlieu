@@ -1,6 +1,15 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+
+confirmations =
+  verifyForm: ->
+    if $('#payment_name').valid and $('#payment_email').valid() and $('#card_number').valid() and $('#card_code').valid() and $('#payment_money_raised').valid() and $('#address_line1').valid() and $('#address_state').valid() and $('#address_zip').valid()
+      return true
+    else
+      return false
+
+
 jQuery ->
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
   payment.setupForm()
@@ -15,12 +24,13 @@ jQuery ->
 payment =
   setupForm: ->
     $('#new_payment').submit ->
-      $('input[type=submit]').attr('disabled', true)
-      if $('#card_number').length
-        payment.processCard()
-        false
-      else
-        true
+        $('input[type=submit]').attr('disabled', true)
+        if confirmations.verifyForm()
+          payment.processCard()
+          false
+        else
+          $('input[type=submit]').attr('disabled', false)
+          false
   
   processCard: ->
     card =
@@ -54,5 +64,3 @@ CreditCard =
         n = if n*2 > 9 then n*2 - 9 else n*2
       total += n
     total % 10 == 0
-
-

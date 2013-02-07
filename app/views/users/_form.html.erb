@@ -1,0 +1,37 @@
+<div class="row center">
+  <div class="offset0">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <div class="control-group">
+        <%= f.label :name %>
+        <div class="controls">
+          <%= f.text_field :name, :required => true, :placeholder => "John Doe", :minlength => 2 %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :email %>
+        <div class="controls">
+          <%= f.email_field :email, :required => true, :placeholder => "John@gmail.com" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :password %>
+        <div class="controls">
+          <%= f.password_field :password, :required => true, :placeholder => "password", :minlength => 6 %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <div class="controls">
+          <%= f.password_field :password_confirmation, :required => true, :placeholder => "password", :minlength => 6, :equalTo =>'#user_password' %>
+        </div>
+      </div>
+
+      <%= f.submit "Save account", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

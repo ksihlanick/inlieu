@@ -5,6 +5,7 @@ gem 'figaro'
 gem 'google-analytics-rails'
 gem 'formtastic-bootstrap'
 gem 'stripe'
+gem 'newrelic_rpm'
 #gem 'bootstrap-sass', '2.1'
 
 gem "paperclip", "~> 3.0"

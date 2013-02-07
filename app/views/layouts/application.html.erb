@@ -8,6 +8,7 @@
 
   <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
   <%= render 'layouts/shim' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Collect donations for your favorite cause in lieu of receiving gifts for your birthday, wedding, or other special occasion.">
 </head>
 <body>
@@ -22,3 +23,12 @@
     </div>
 </body>
 </html>
+
+
+
+
+    <script type="text/javascript">
+        $(function () {
+            $("a.youtube").YouTubePopup({ autoplay: 0 });
+        });
+    </script>

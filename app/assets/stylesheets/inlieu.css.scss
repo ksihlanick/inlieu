@@ -43,7 +43,24 @@ $grayMediumLight: #eaeaea;
   }
 }
 
+
+    label.valid {
+      //width: 24px;
+      //height: 24px;
+      background: url(assets/valid.png) center center no-repeat;
+      display: inline-block;
+      //text-indent: -9999px;
+    }
+    label.error {
+      font-weight: bold;
+      color: red;
+      padding: 2px 8px;
+      margin-top: 2px;
+    }
+
+
 @import 'bootstrap';
+@import "bootstrap-responsive";
 body {
   padding-top: 60px;
   background: url('/assets/debut_light.png');
@@ -81,7 +98,7 @@ textarea {
   }
 }
 
-/* typography */
+// typography
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
@@ -109,7 +126,7 @@ p {
 }
 
 
-/* header */
+// header
 
 #logo {
   float: left;
@@ -167,7 +184,7 @@ a.green:hover {
   color: #7ac943;
 }
 
-/* footer */
+// footer
 
 footer {
   margin-top: 45px;
