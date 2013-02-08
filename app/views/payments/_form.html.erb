@@ -1,9 +1,3 @@
-<div class = "row center">
-
-  <a id="popup" href="#">Click a link!</a>
-
-</div>
-
 <%= form_for([@event, @payment]) do |f| %>
   <% if @payment.errors.any? %>
     <div class="error_messages">

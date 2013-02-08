@@ -1,10 +1,67 @@
 <% provide(:title, @event.name) %>
 
+<div class="container-narrow title">
+  <h1><%= @event.name %></h1>
+</div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    
+    <div class="span6">
+
+      <div class="picture row center">
+        <%= image_tag @event.avatar.url(:large) %>
+      </div>
+    
+    </div>
+
+
+    <div class="span6">
+
+      <div class = "description row center">
+        <h3> <strong>An event by <%= @event.user.name%> Inlieu of <%= @event.inlieuof %> for <%= @event.charity_name%></strong> </h3>
+
+        <% if (@event.is_active) %>
+          <div class = "row offset3" id="defaultCountdown"></div>
+          <p> <%=link_to 'DONATE NOW', new_event_payment_path(@event.id) %> </p> 
+          <% else %>
+            <p> This event is not yet approved by our admin. Check back soon! </p>
+        <% end %>
+
+        <p> <strong>Money Raised:</strong> <%=number_to_currency(@event.money_raised/100)%> <strong>GOAL:</strong> <%=number_to_currency(@event.goal_money/100)%> </p>
+        <p> <strong>Charity:</strong> <%= @event.charity_name%> <strong>Occasion:</strong>  <%= @event.inlieuof %> </p>
+      </div>
+
+      <div class="row center">
+        <p> <%=@event.description%> </p>
+
+
+        
+        <p> <%=link_to "See who's donated already", event_payments_path(@event.id) %></p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<div class="container-narrow social-media">
+</div>
+
+<div class="container-narrow contributors">
+</div>
+
+
 <style type="text/css">
-
-body > iframe { display: none; }
-
-#defaultCountdown { width: 240px; height: 45px; float: center;}
+body > iframe {  }
+#defaultCountdown { width: 240px; height: 45px;}
 </style>
 
 <script>
@@ -18,52 +75,3 @@ $(function () {
 
 });
 </script>
-
-<div class="row center">
-
-  <h1><%= @event.name %></h1>
-  <h2> An event by <%= @event.user.name%> Inlieu of <%= @event.inlieuof %> for <%= @event.charity_name%> </h2>
-
-    <% if @event.video %>
-      <div>
-        <%= @event.video.html_safe %>
-    </div>
-    <% end %>
-</div>
-
-<div class="row center picture">
-  <%= image_tag @event.avatar.url(:medium) %>
-</div>
-
-<p></p>
-
-<div class="row center picture">
-  <p>Time Remaining</p>
-</div>
-
-
-<div class="container">
-  <div class="row" id="login-container">
-    <div class="span8 offset4">
-       <div id="defaultCountdown" style = ></div>
-    </div>
-  </div>
-</div>
-
-<div class = "row center countdown">
-<div id="defaultCountdown" style = ></div>
-</div>
-
-<div class="row center">
-  <p> Money Raised: <%=number_to_currency(@event.money_raised/100)%> GOAL: <%=number_to_currency(@event.goal_money/100)%> </p>
-</div>
-
-<div class="row center">
-  <p> <%=@event.description%> </p>
-  <% if (@event.is_active) %>
-    <p> <%=link_to 'DONATE NOW', new_event_payment_path(@event.id) %> </p> 
-    <% else %>
-      <p> Funding for this event is not currently available </p>
-    <% end %>
-  <p> <%=link_to "See who's donated already", event_payments_path(@event.id) %></p>
-</div>
