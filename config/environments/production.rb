@@ -66,7 +66,7 @@ Inlieu::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  config.action_mailer.default_url_options = { host: "https://mighty-gorge-9805.herokuapp.com/" }
+  config.action_mailer.default_url_options = { host: "mighty-gorge-9805.herokuapp.com" }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
