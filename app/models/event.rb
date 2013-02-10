@@ -21,7 +21,7 @@ class Event < ActiveRecord::Base
   has_attached_file :avatar, styles: {
     thumb: '100x100>',
     square: '200x200#',
-    medium: '300x300>'
+    medium: '500x500>'
   }
 
   validates(:name, presence: true, length: {maximum: 50} )
