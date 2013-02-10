@@ -37,14 +37,16 @@ class Event < ActiveRecord::Base
     self.name = event_hash[:name]
     self.inlieuof = event_hash[:inlieuof]
     self.description = event_hash[:description]
-    self.goal_money = event_hash[:goal_money]
+    self.goal_money = event_hash[:goal_money]*100
     self.charity_name = event_hash[:charity_name]
     self.money_raised = 0
     self.enddate = DateTime.now.utc + 15
     self.video = event_hash[:video]
     self.approved = false
     self.rejected = false
-    self.avatar = event_hash[:avatar]
+    if (event_hash[:avatar])
+      self.avatar = event_hash[:avatar]
+    end
   end
 
   def set_approved()

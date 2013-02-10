@@ -11,9 +11,10 @@ class Admin::ApprovalsController < ApplicationController
   def create
     @event = Event.find(params[:event_id])
     @event.approved = true
+    @event.enddate = DateTime.now.utc + 15
+    @event.save!
     @user = User.find_by_id(@event.user_id)
     UserMailer.approve_email(@user).deliver
-    @event.save!
     redirect_to admin_events_path
   end
 end

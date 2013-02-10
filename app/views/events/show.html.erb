@@ -1,5 +1,12 @@
 <% provide(:title, @event.name) %>
 
+<% if (@event.approved == false) %>
+  <h3> Thanks for making an event! Our admin will check it over and approve it for you soon, and then you can tell all your friends! To make changes in the meantime, click here: <%= link_to "edit event", edit_event_path %> </h3>
+<% else %>
+
+<% end %>
+
+
 <div class="container-narrow title">
   <h1><%= @event.name %></h1>
 </div>
